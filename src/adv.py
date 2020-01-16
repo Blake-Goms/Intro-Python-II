@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 # player is name of file. Player is name of Class
 # Declare all the rooms
 
@@ -22,6 +23,18 @@ to north. The smell of gold permeates the air."""),
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
+
+# List of items
+hammer = Item(
+    '\vMjolnir', 'Whosoever holds this hammer,\nif he be worthy,\nshall possess the power of Thor.\v')
+spear = Item('\vGungnir', ' Spear of the All-Father, Odin, King of Asgard\v')
+sword = Item(
+    '\vHofund', ' Sword of the Vanir God, Heimdall, protector of the Bifrost\v')
+
+# Add items to rooms
+room['treasure'].add_item(hammer)
+room['overlook'].add_item(spear)
+room['foyer'].add_item(sword)
 
 
 # Link rooms together
@@ -69,7 +82,7 @@ def play_game():
 
 name = input("Enter your gamertag: ")
 print(f'Welcome to your virtual game, {name}')
-print("Navigate the game using nesw keys! To quit press q")
+print("Navigate the game using nesw keys! To quit press q \n")
 # assign the gamertag
 player = Player(name)
 # assign to dict room outside
@@ -110,4 +123,5 @@ while True:
         break
     else:
         print("I did not recognize that")
+
 '''

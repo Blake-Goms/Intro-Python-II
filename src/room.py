@@ -12,14 +12,18 @@ class Room:
         self.w_to = None
         self.e_to = None
         self.s_to = None
+        self.items = []
+
+    def add_item(self, item):
+        self.items.append(item)
 
     def __repr__(self):
-        return f' Name: {self.name}, Description: {self.description}'
+        return f' \nName: {self.name}, Description: {self.description} \n'
         # repr is for development environment, stack overflow
 
     def __str__(self):
         # str is for production environment, stack overflow
-        return f'Name: {self.name}, Description: {self.description}'
+        return f'\nName: {self.name}, Description: {self.description} \n'
 
 
 ''' LECTURE DAY 2

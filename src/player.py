@@ -7,7 +7,12 @@
 class Player:
     def __init__(self, name):
         self.name = name
-        #self.current_room = None
+        self.current_room = None
+        self.items = []
+
+    def add_item(self, item):
+        self.items.append(item)
+        print(f"\nYou picked up {item.name}.\n")
 
 
 ''' LECTURE DAY 2
