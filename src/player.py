@@ -14,6 +14,10 @@ class Player:
         self.items.append(item)
         print(f"\nYou picked up {item.name}.\n")
 
+    def drop_items(self, item):
+        self.current_room.items.append(item)
+        self.items.remove(item)
+
 
 ''' LECTURE DAY 2
 

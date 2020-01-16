@@ -26,10 +26,10 @@ earlier adventurers. The only exit is to the south."""),
 
 # List of items
 hammer = Item(
-    '\vMjolnir', 'Whosoever holds this hammer,\nif he be worthy,\nshall possess the power of Thor.\v')
-spear = Item('\vGungnir', ' Spear of the All-Father, Odin, King of Asgard\v')
+    'Mjolnir', 'Whosoever holds this hammer, if he be worthy, shall possess the power of Thor.')
+spear = Item('Gungnir', ' Spear of the All-Father, Odin, King of Asgard')
 sword = Item(
-    '\vHofund', ' Sword of the Vanir God, Heimdall, protector of the Bifrost\v')
+    'Hofund', 'Sword of the Vanir God, Heimdall, protector of the Bifrost')
 
 # Add items to rooms
 room['treasure'].add_item(hammer)
@@ -59,8 +59,39 @@ room['treasure'].s_to = room['narrow']
 
 def play_game():
     global player
-    print('You are currently at, ', {player.current_room})
-    location = input("Where would you like to go next? ")
+    print('You are currently at, ', player.current_room)
+
+    # For Exploring items
+    explore = input("Search the room for Items? Enter [y] or [n] ~~> ")
+    if explore == 'y':
+        if len(player.current_room.items) > 0:
+            print(
+                f'You found a legendary item!\n {player.current_room.items[0].name, player.current_room.items[0].description } \n')
+            pickup_item = input(
+                "\nWould you like take this item? Enter [y] or [n] ~~> ")
+            if pickup_item == 'y':
+                player.add_item(player.current_room.items[0])
+                print('\n Here are the items in your inventory:\n',
+                      player.items, '\n')
+                choice = input(
+                    '\nWould you like to remove any item in the inventory? Enter [y] or [n]:\n')
+                if choice == 'y':
+                    selected_item = input('\nEnter Item Name:\n')
+                    # if remove == 'Mjolnir' or 'Gungnir' or 'Hofund':
+                    #     player.drop_items(choice)
+                    for x in player.items:
+                        if selected_item in player.items:
+                            player.drop_items(selected_item)
+                            print(f'\n You have dropped: {selected_item}\n')
+
+    elif explore == 'q':
+        print("\nThanks for playing, Goodbye!\n")
+        quit()
+    else:
+        pass
+
+    # For Location
+    location = input("\nWhere would you like to go next? \n")
     if location == "n":
         player.current_room = player.current_room.n_to
 
@@ -73,16 +104,17 @@ def play_game():
     elif location == "w":
         player.current_room = player.current_room.w_to
     elif location == "q":
-        print("Thanks for playing, Goodbye!")
+        print("\nThanks for playing, Goodbye!\n")
         quit()
     else:
-        print('Thats not a nesw key! You lost your sense of direction. You lose! ')
+        print(
+            '\nThats not a [n],[e],[s],[w] key! You lost your sense of direction. You lose! \n')
         quit()
 
 
 name = input("Enter your gamertag: ")
-print(f'Welcome to your virtual game, {name}')
-print("Navigate the game using nesw keys! To quit press q \n")
+print(f'\nWelcome to your virtual game, {name}\n')
+print("\nNavigate the game using [n],[e],[s],[w] keys! To quit press [q] \n")
 # assign the gamertag
 player = Player(name)
 # assign to dict room outside

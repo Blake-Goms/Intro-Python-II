@@ -18,7 +18,7 @@ class Room:
         self.items.append(item)
 
     def __repr__(self):
-        return f' \nName: {self.name}, Description: {self.description} \n'
+        return f' \n----------------\n\nName: {self.name}, Description: {self.description} \n \n----------------\n'
         # repr is for development environment, stack overflow
 
     def __str__(self):
