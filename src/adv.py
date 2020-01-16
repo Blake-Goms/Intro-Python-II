@@ -1,8 +1,9 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
+    # Room(argument 1/name, argument 2/description)
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
 
@@ -39,12 +40,54 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+# Player class requires name and current room
+
+
+def play_game():
+    global player
+    print('You are currently at, ', {player.current_room})
+    location = input("Where would you like to go next? ")
+    if location == "n":
+        player.current_room = player.current_room.n_to
+
+    elif location == "s":
+        player.current_room = player.current_room.s_to
+
+    elif location == "e":
+        player.current_room = player.current_room.e_to
+
+    elif location == "w":
+        player.current_room = player.current_room.w_to
+    elif location == "q":
+        print("Thanks for playing, Goodbye!")
+        quit()
+    else:
+        print('Thats not a nesw key! You lost your sense of direction. You lose! ')
+        quit()
+
+
+name = input("Enter your gamertag: ")
+print(f'Welcome to your virtual game, {name}')
+print("Navigate the game using nesw keys! To quit press q")
+# assign the gamertag
+player = Player(name)
+# assign to dict room outside
+player.current_room = room['outside']
+
+
+isPlaying = True
+while isPlaying:
+    play_game()
+
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-#
+
+# While loop will execute until function quits
+
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
