@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+# player is name of file. Player is name of Class
 # Declare all the rooms
 
 room = {
@@ -92,3 +93,21 @@ while isPlaying:
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+''' LECTURE DAY 2
+
+player = Player(input("Please enter name: "), room['outside'])
+print(player.current_room)
+directions = ["n", "s", "e", "w"]
+
+while True:
+    cmd = input("~~> ")
+    if cmd in directions:
+        # Make player travel in that direction
+        player.travel(cmd)
+    elif cmd == "q":
+        print("Bye")
+        break
+    else:
+        print("I did not recognize that")
+'''
